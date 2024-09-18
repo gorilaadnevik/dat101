@@ -9,21 +9,78 @@ printOut(newLine);
 
 printOut("--- Part 2 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-printOut("Replace this with you answer!");
+/* Convert 25 metres and 34 centimeters to inches. An inch is 25.4 millimeters/inch */
+/*
+    (25.4 / 1000) * 25.34m 
+*/
+
+const millInInch = 25.4;
+const millInMeters = 1000;
+const metres = 25.34;
+const answer = (metres  * millInMeters) / millInInch;
+const exactAnswer = answer.toFixed(2); 
+
+printOut("exactAnswer = " + exactAnswer.toString());
 printOut(newLine);
 
 printOut("--- Part 3 ----------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
-printOut("Replace this with you answer!");
+
+/*
+Convert 3 days, 12 hours, 14 minutes, and 45 seconds to minutes
+*/
+const secondsInMinutes = 60;
+const minutesInHour = 60;
+const hoursInDay = 24;
+    (3 * hoursInDay * minutesInHour) +
+    (12 * minutesInHour) +
+    14 +
+    (45/secondsInMinutes);
+printOut("part2_Answer =  " + part2_Answer.toString());
 printOut(newLine);
 
 printOut("--- Part 4 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-printOut("Replace this with you answer!");
+/*
+Convert 6,322.52 minutes to days, hours, minutes, and seconds.
+*/
+const numberOfMinutes = 6322.52;
+let part4_Calc = numberOfMinutes / (60 * 24); 
+const part4_Days = Math.floor(part4_Calc);
+printOut("Days = " + part4_Days);
+
+part4_Calc = part4_Calc - part4_Days
+part4_Calc = part4_Calc * hoursInDay;
+const part4_Hours = Math.floor(part4_Calc);
+printOut("Hours = " + part4_Hours);
+
+part4_Calc = part4_Calc - part4_Hours;
+part4_Calc = part4_Calc * minutesInHour;
+const part4_Minutes = Math.floor(part4_Calc);
+printOut("Minutes = " + part4_Minutes);
+
+part4_Calc = part4_Calc - part4_Minutes;
+part4_Calc = part4_Calc * secondsInMinute;
+const part4_Seconds = Math.floor(part4_Calc);
+printOut("Seconds = " + part4_Seconds);
 printOut(newLine);
 
+
 printOut("--- Part 5 ----------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
+/* 
+Convert 54 dollars to Norwegian kroner, and print the price for both:
+NOK → USD and USD → NOK.
+Use 76 NOK = 8.6 USD as the exchange rate.
+The answer must be in whole "Kroner" and whole "dollars".
+*/
+
+const NOK = 76 / 8.6;
+const USD = 8.6 / 76;
+let amountUSD = 54;
+const amountNOK = Math.round(amountUSD * Nok);
+printOut( amountUSD + " dollar is " + amountNOK + " kroner");
+amountUSD = Math.round(amountNOK * USD)
+printOut( amountNOK + " kroner is " + amountUSD + " dollars");
+
 printOut("Replace this with you answer!");
 printOut(newLine);
 
