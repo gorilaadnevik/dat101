@@ -2,15 +2,28 @@
 import { initPrintOut, printOut, newLine } from "../../common/script/utils.mjs";
 initPrintOut(document.getElementById("txtOut"));
 
+const currencyTypes = { 
+    NOK: {value: 1.0000, name: "Norske kroner", denomination: "kr"}, 
+    EUR: {value: 0.0985, name: "Europeiske euro", denomination: "€"}, 
+    USD: {value: 0.1091, name: "United States dollar", denomination: "$"}, 
+    GBP: {value: 0.0847, name: "Pound sterling", denomination: "£"}, 
+    INR: {value: 7.8309, name: "Indiske rupee", denomination: "₹"}, 
+    AUD: {value: 0.1581, name: "Australske dollar", denomination: "A$"}, 
+    PHP: {value: 6.5189, name: "Fillippinske peso", denomination: "₱"}, 
+    SEK: {value: 1.0580, name: "Svenske kroner", denomination: "kr"}, 
+    CAD: {value: 0.1435, name: "Kanadiske dollar", denomination: "C$"}, 
+    THB: {value: 3.3289, name: "Thai baht", denomination: "฿"} 
+}
 
-const AccountType = (
-    Normal: "Brukskonto"
-    Saving: "Sparekonto"
-    Credit: "Kreditkonto"
+
+const AccountType = {
+    Normal: "Brukskonto",
+    Saving: "Sparekonto",
+    Credit: "Kreditkonto",
     Pension: "Pensjonskonto"
 
 
-)
+};
 
 class TAccount {
     #type; 
@@ -38,17 +51,17 @@ class TAccount {
         return this.#balance;
     }
     deposit(aAamount){
-        this.#balace += aAamount;
-        this.#balance,#balance += aAamount;
+        this.#balance += aAamount;
+        this.#balance,this.#balance += aAamount;
         printOut("Deposit of " + aAamount +  " ,new balance is" + this.#balance);
 
     }
     withdraw(aAamount) {
-        let can withdraw = true;
+        let canWithdraw = true;
         let text = "";
 
         switch(this.#type){
-            case AccountType.Savings;
+            case AccountType.Savings:
             if(this.#withdrawCount < 3){
                 this.#withdrawCount++;
                 canWithdraw = true;
@@ -57,12 +70,12 @@ class TAccount {
                 text = "cannot withdraw more than 3 times from a " + this.#type + "account"
             }
             break;
-            case AccountType.Pension;
-            canwithdraw = false;
+            case AccountType.Pension:
+            canWithdraw = false;
             text = "cannot withdraw from a " + this.#type + " account "
             break;
             
-        }
+    
         if(this.#withdrawCount < 3){
             this.#withdrawCount++;
              this.#balance -= aAamount;
@@ -71,24 +84,29 @@ class TAccount {
             printOut(text);
         }
         break;
-        case AccountType.Pension;
+        case AccountType.Pension:
+        canwithdraw = false;
+        //text = "cannot withdraw more than 3 times from a" + this.#type + " account."
         break;
     }
+}
     }
-
+    
+        
+        
 
 printOut("--- Part 1 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
 
 
-printOut (AccountType.Normal1 + ", " + AcccountType.Saving + ", " + AccountType.Credit ", " + AccountType.Pension);
+printOut (AccountType.Normal1 + ", " + AccountType.Saving + ", " + AccountType.Credit + ", " + AccountType.Pension);
 printOut(newLine);
 
 printOut("--- Part 2 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
 let myAccount = new TAccount(AccountType.Normal);
 printOut("My account" + myAccount.toString());
-myAccount.setType(AccountType.Saving;)
+myAccount.setType(AccountType.Saving);
 printOut("myAccount: " + myAccount.toString());
 printOut(newLine);
 
@@ -124,13 +142,24 @@ printOut("--- Part 5 -----------------------------------------------------------
  
 
 printOut(newLine);
+myAccount.deposit(150);
+printOut(newLine);
 
 printOut("--- Part 6 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
+myAccount.setCurrencyType(CurrencyTypes.SEK);
+myAccount.setCurrencyType(CurrencyTypes.USD);
+myAccount.setCurrencyType(CurrencyTypes.NOK);
+printOut(newLine);
 printOut("Replace this with you answer!");
 printOut(newLine);
 
 printOut("--- Part 7 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
+myAccount.deposit(12, CurrencyTypes.USD);
+myAccount.withdraw(10, CurrencyTypes.GBP);
+myAccount.setCurrencyType(CurrencyTypes.CAD);
+myAccount.setCurrencyType(CurrencyTypes.INR);
+myAccount.withdraw(100.927, CurrencyTypes.SEK);
 printOut("Replace this with you answer!");
 printOut(newLine);
