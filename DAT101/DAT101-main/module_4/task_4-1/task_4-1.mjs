@@ -91,7 +91,6 @@ class TAccount {
     }
 }
     }
-    
         
         
 
@@ -133,7 +132,7 @@ myAccount.setType(AccountType.Saving);
 myAccount.withdraw(10);
 
 
-//printOut he
+
 
 printOut(newLine);
 
@@ -153,6 +152,7 @@ myAccount.setCurrencyType(CurrencyTypes.NOK);
 printOut(newLine);
 printOut("Replace this with you answer!");
 printOut(newLine);
+
 
 printOut("--- Part 7 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
