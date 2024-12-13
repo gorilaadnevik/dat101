@@ -2,7 +2,7 @@
 
 import { printOut } from "../../common/script/utils.mjs";
 
-const CarTypes = [
+const carTypes = [
   { value: 1, caption: "Aston Martin" },
   { value: 2, caption: "Bentley" },
   { value: 3, caption: "Alfa Romeo" },
@@ -20,7 +20,7 @@ const CarTypes = [
 
 const GirlsNames = ["Anne", "Inger", "Kari", "Marit", "Ingrid", "Liv", "Eva", "Berit", "Astrid", "Bjørg", "Hilde", "Anna", "Solveig", "Marianne", "Randi", "Ida", "Nina", "Maria", "Elisabeth", "Kristin"];
 
-const MovieGenre = [
+const movieGenre = [
   "Action",
   "Adventure",
   "Animation",
@@ -100,41 +100,167 @@ function txtTask2WordKeyPress(aEvent){
   }
 }
 //--- Part 3 ----------------------------------------------------------------------------------------------
-/* Put your code below here!*/
-
+/*
+Part 3: Checkbox Evaluation (15 points)
+Create a click event function to check which of the checkboxes are selected.
+And print the result in txtTask3Output.
+*/
 const cmbTask3CheckAnswer = document.getElementById("cmbTask3CheckAnswer");
-cmbTask3CheckAnswer.addEventListener("click", cmbTask3CheckAnswer);
+cmbTask3CheckAnswer.addEventListener("click", cmbTask3CheckAnswerClick);
 const txtTask3Output = document.getElementById("txtTask3Output");
 
-let text = ""; //Tømmer teksten, gjør klart til ny utskrift.
-  function cmbTask3CheckAnswerClick() {
-    const chkTask3 = document.getElementsByName("chkTask3");
-    for(let i= 0; i < chkTask3.length; i++) {
+let text = ""; //Tømmer teksten, gjør klar til ny utskrift.
+function cmbTask3CheckAnswerClick() {
+  const chkTask3 = document.getElementsByName("chkTask3");
+  for(let i = 0; i < chkTask3.length; i++) {
+    /*
+    TODO: Sjekk om checkboxen er huket av. og skriv ut resultatet i txtTask3Output
+          Skriv også ut hvilken checkbox som er huket av, og hva verdien er.
+          Det er også mulig å skrivet hele teksten til hver checkbox i txtTask3Output.
+    */
+   const checkBox = chkTask3[i];
+   if(checkBox.checked){
+    const value = checkBox.value;
+    if(value === "4"){
+      text += "Du har valgt nummer " + value + ". Dette kan du ikke mene!!???<br />"
 
-const checkBox = chkTask3[i];
-      if(checkBox.checked){
-      const value = checkBox.value;
-      if(value === "4"){
-        text += "Du har valgt nummer " + value + ".<br />"
-        
-         }else{
-          text += "Du har valgt nummer " + value + ".<br />"
-         }
-      }
+    }else{
+      text += "Du har valgt nummer " + value + ".<br />"
     }
-    txtTask3Output.innerText = text;
-    text = ""; //Rømmer teksten, klargjør til neste klikk!
+   }
+
   }
+  txtTask3Output.innerHTML = text;
+  text = ""; //Rømmer teksten, klargjør til neste klikk!
+}
+
+
+
 
 
 //--- Part 4 ----------------------------------------------------------------------------------------------
-/* Put your code below here!*/
+ 
+
+const CarTypes = ["Sedan", "SUV", "Truck", "Convertible"];
+
+
+const divTask4Cars = document.getElementById("divTask4Cars");
+const txtTask4Output = document.getElementById("txtTask4Output");
+
+
+for (let i = 0; i < CarTypes.length; i++) {
+    
+    const label = document.createElement("label");
+    label.textContent = CarTypes[i];
+
+    
+    const radio = document.createElement("input");
+    radio.type = "radio";
+    radio.name = "carType"; 
+    radio.value = CarTypes[i];
+
+    
+    radio.addEventListener("click", () => {
+        txtTask4Output.textContent = `Selected car: ${radio.value}`;
+    });
+
+
+    divTask4Cars.appendChild(radio);
+    divTask4Cars.appendChild(label);
+
+    
+    divTask4Cars.appendChild(document.createElement("br"));
+}
+
 
 //--- Part 5 ----------------------------------------------------------------------------------------------
-/* Put your code below here!*/
+
+const selectTask5Animals = document.getElementById("selectTask5Animals");
+const txtTask5Output = document.getElementById("txtTask5Output");
+
+selectTask5Animals.addEventListener("change", () => {
+
+    const selectedAnimal = selectTask5Animals.value;
+
+
+    txtTask5Output.textContent = `Selected animal: ${selectedAnimal}`;
+});
+
 
 //--- Part 6 ----------------------------------------------------------------------------------------------
 /* Put your code below here!*/
 
+const girlsNames = ["Sophia", "Olivia", "Emma", "Ava", "Charlotte", "Amelia", "Isabella", "Mia", "Evelyn", "Harper"];
+const selectTask6Girls = document.getElementById("selectTask6Girls");
+const txtTask6Output = document.getElementById("txtTask6Output");
+
+GirlsNames.forEach(name => {
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+    selectTask6Girls.appendChild(option);
+});
+
+
+selectTask6Girls.addEventListener("change", () => {
+    const selectedName = selectTask6Girls.value;
+    txtTask6Output.textContent = `You selected: ${selectedName}`;
+});
+
 //--- Part 7 ----------------------------------------------------------------------------------------------
 /* Put your code below here!*/
+
+const MovieGenre = ["Action", "Comedy", "Drama", "Horror", "Sci-Fi"];
+const selectMovieGenre = document.getElementById("selectMovieGenre");
+const btnAddMovie = document.getElementById("cmbAddMovie");
+const movieTable = document.getElementById("tblMovies");
+
+
+MovieGenre.forEach(genre => {
+    const option = document.createElement("option");
+    option.value = genre;
+    option.textContent = genre;
+    selectMovieGenre.appendChild(option);
+});
+
+
+btnAddMovie.addEventListener("click", () => {
+    const title = document.getElementById("txtMovieTitle").value;
+    const genre = selectMovieGenre.value;
+    const director = document.getElementById("txtMovieDirector").value;
+    const rating = document.getElementById("txtMovieRate").value;
+
+    if (!title || !director) {
+        alert("Please fill in all the fields.");
+        return;
+    }
+
+    const tableBody = movieTable.querySelector("tbody") || document.createElement("tbody");
+    if (!movieTable.querySelector("tbody")) {
+        movieTable.appendChild(tableBody);
+    }
+
+    const row = document.createElement("tr");
+
+    const nrCell = document.createElement("td");
+    nrCell.textContent = tableBody.rows.length + 1;
+    row.appendChild(nrCell);
+
+    const titleCell = document.createElement("td");
+    titleCell.textContent = title;
+    row.appendChild(titleCell);
+
+    const genreCell = document.createElement("td");
+    genreCell.textContent = genre;
+    row.appendChild(genreCell);
+
+    const directorCell = document.createElement("td");
+    directorCell.textContent = director;
+    row.appendChild(directorCell);
+
+    const ratingCell = document.createElement("td");
+    ratingCell.textContent = rating;
+    row.appendChild(ratingCell);
+
+    tableBody.appendChild(row);
+});
